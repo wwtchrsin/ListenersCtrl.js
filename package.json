@@ -1,0 +1,29 @@
+{
+  "type": "module",
+  "name": "listenersctrl",
+  "version": "1.0.0",
+  "description": "Managing event listeners in the browser environment",
+  "main": "./umd/listenersctrl.js",
+  "exports": {
+    "./esm": "./esm/listenersctrl.js"
+  },
+  "module": "./esm/listenersctrl.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wwtchrsin/ListenersCtrl.js.git"
+  },
+  "keywords": [
+    "event",
+    "listener",
+    "browser"
+  ],
+  "author": "Vladislav Chursin",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/wwtchrsin/ListenersCtrl.js/issues"
+  },
+  "homepage": "https://github.com/wwtchrsin/ListenersCtrl.js#readme"
+}

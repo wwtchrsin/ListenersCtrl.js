@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Example</title>
+<!--<link rel="stylesheet" type="text/css" href="" media="all">-->
+<style type="text/css">
+html, body, #scrollable-content {
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+}
+@keyframes anim-bgcolor-red {
+	from { background-color: #cc2200; }
+	to { background-color: #ff5533; }
+}
+@keyframes anim-bgcolor-green {
+	from { background-color: #11bb99; }
+	to { background-color: #33ddcc; }
+}
+@keyframes anim-bgcolor-blue {
+	from { background-color: #2299bb; }
+	to { background-color: #33ccdd; }
+}
+#scrollable-content {
+	overflow-y: scroll;
+}
+body {
+	font-family: sans-serif;
+	background-color: #dddddd;
+}
+#page {
+	margin: 20px 20% 40px;
+}
+header, footer {
+	position: relative;	
+	height: 120px;
+	border: 2px solid #222222;
+	box-sizing: border-box;
+	font-size: 2em;
+	background-color: #222222;
+	color: #eeeeee;
+	cursor: pointer;
+	transition: background-color 150ms linear 0ms;
+}
+header:hover, footer:hover {
+	background-color: #333333;
+}
+header > div, footer > div {
+	position: absolute;
+	top: 50%;
+	left: 0; right: 0;
+	text-align: center;
+	transform: translateY(-50%); 
+}
+.dialog {
+	position: fixed;
+	top: 0; left: 0;
+	right: 0; bottom: 0;
+	z-index: 1;
+}
+.dialog-msg {
+	position: absolute;
+	left: 0; right: 0;
+	top: 50%;
+	text-align: center;
+	transform: translateY(-50%);
+	font-size: 4em;
+}
+.dialog-button {
+	position: fixed;
+	top: 30px; right: 50px;
+	font-size: 4em;
+	color: #eeeeee7f;
+	transition: color 200ms linear 50ms;
+	cursor: pointer;
+}
+.dialog-button:hover {
+	color: #eeeeeebb;
+}
+.anim-ctrl-container {
+	position: relative;
+	height: 4em;
+	margin: 20px 0;
+}
+.anim-ctrl {
+	position: absolute;
+	width: 15em;
+	top: 0; right: 0; bottom: 0;
+	border: 5px solid #2222227f;
+	border-radius: 5px;
+	box-sizing: border-box;
+	background-color: #bbbbbb;
+}
+.anim-ctrl-caption {
+	position: absolute;
+	top: 50%; left: 1em;
+	transform: translateY(-50%);
+}
+.anim-on, .anim-off {
+	position: absolute;
+	top: 50%;
+	height: 2em;
+	width: 2em;
+	border: 5px solid #2222227f;
+	border-radius: 50%;
+	box-sizing: border-box;
+	transform: translateY(-50%);
+}
+.anim-on {
+	right: 3.8em;
+	background-color: #227755;
+}
+.anim-off {
+	right: 1em;
+	background-color: #883333;
+}
+.red-anim {
+	animation-name: anim-bgcolor-red;
+}
+.green-anim {
+	animation-name: anim-bgcolor-green;
+}
+.blue-anim {
+	animation-name: anim-bgcolor-blue;
+}
+.red {
+	background-color: #ee3311;
+	color: #eeeeee;
+}
+.green {
+	background-color: #22ccaa;
+	color: #eeeeee;
+}
+.blue {
+	background-color: #22aacc;
+	color: #eeeeee;
+}
+.red, .green, .blue {
+	animation-duration: 1500ms;
+	animation-iteration-count: infinite;
+	animation-direction: alternate;
+	animation-timing-function: linear;
+}
+.card {
+	position: relative;
+	margin: 20px 0;
+	height: 300px;
+	border: 2px solid #222222;
+	box-sizing: border-box;
+}
+.caption {
+	position: absolute;
+	left: 0; right: 0;
+	top: calc(50% - 50px);
+	font-size: 2em;
+	text-align: center;
+	transform: translateY(-50%);
+}
+.controls {
+	position: absolute;
+	left: 0; right: 0;
+	top: calc(100% - 100px);
+	bottom: 0;
+	background-color: #eeeeee;
+	color: #222222;
+}
+.append, .prepend, .disconn {
+	position: absolute;
+	top: 0; bottom: 0;
+	background-color: inherit;
+	transition: background-color 300ms ease-in-out 100ms;
+	cursor: pointer;
+}
+.append:hover, .prepend:hover, .disconn:hover {
+	background-color: #aaaaaa;
+}
+.append {
+	left: 0;
+	right: 67%;
+}
+.prepend {
+	left: 33%;
+	right: 33%;
+}
+.disconn {
+	left: 67%;
+	right: 0;
+}
+.append > div, .prepend > div, .disconn > div {
+	position: absolute;
+	left: 0; right: 0;
+	top: 50%;
+	text-align: center;
+	transform: translateY(-50%);
+}
+</style>
+</head>
+<body>
+	<div id="scrollable-content">
+	<div id="page">
+	<div class="anim-ctrl-container">
+		<div class="anim-ctrl">
+			<div class="anim-ctrl-caption">ANIMATION</div>
+			<div class="anim-on"></div>
+			<div class="anim-off"></div>
+		</div>
+	</div>
+	<header>
+		<div>Activate</div>
+	</header>
+	<main>
+		<div class="card red">
+			<div class="caption">Red</div>
+			<div class="controls">
+				<div class="append"><div>Append()</div></div>
+				<div class="prepend"><div>Prepend()</div></div>
+				<div class="disconn"><div>Disconn()</div></div>
+			</div>
+		</div>
+		<div class="card green">
+			<div class="caption">Green</div>
+			<div class="controls">
+				<div class="append"><div>Append()</div></div>
+				<div class="prepend"><div>Prepend()</div></div>
+				<div class="disconn"><div>Disconn()</div></div>
+			</div>
+		</div>
+		<div class="card blue">
+			<div class="caption">Blue</div>
+			<div class="controls">
+				<div class="append"><div>Append()</div></div>
+				<div class="prepend"><div>Prepend()</div></div>
+				<div class="disconn"><div>Disconn()</div></div>
+			</div>
+		</div>
+	</main>
+	<footer>
+		<div>Activate</div>
+	</footer>
+	</div>
+	</div>
+	<!--
+	<script type="module">
+		import { ListenersCtrl, ListenersAggt } from './esm/listenersctrl.js';
+		-->
+	<script type="text/javascript" src="./umd/listenersctrl.min.js"></script>
+	<script type="text/javascript">		
+		ListenersAggt.Element(window, 'w').Apply('DOMContentLoaded', function(ev) {
+			ListenersAggt.Alias('w').Clear();
+			ListenersAggt.Element('header', 'header');
+			ListenersAggt.Element('footer', 'footer');
+			['red', 'green', 'blue'].forEach(function(color) {
+				['header', 'footer'].forEach(function(tagname) {				
+					console.log( tagname, ListenersAggt.Alias(tagname) );					
+					ListenersAggt.Alias(tagname).Associate('click', function(ev) {
+						var elems = {};
+						['dialog', 'dialog-msg', 'dialog-button'].forEach(function(className) {
+							elems[ className ] = document.createElement('div');
+							elems[ className ].classList.add(className);
+						});
+						if ( !ListenersAggt.Alias('anim-on').CountConn() )
+						{ elems['dialog'].classList.add(color+'-anim'); }
+						elems['dialog'].classList.add(color);
+						elems['dialog-msg'].textContent = color;
+						elems['dialog-button'].textContent = 'x';
+						elems['dialog'].appendChild( elems['dialog-msg'] );
+						elems['dialog'].appendChild( elems['dialog-button'] );
+						document.body.insertBefore( elems['dialog'], document.body.firstChild );
+						ListenersAggt.Element(elems['dialog-button']).Apply('click', function(ev) {
+							ListenersAggt.Element(elems['dialog-button']).Clear();
+							document.body.removeChild( elems['dialog'] );
+						});
+					}).As(color);
+					ListenersAggt.Element('.card.'+color+' .append').Append('click', function(ev) {
+						ListenersAggt.Alias(tagname).Select(color).Append();
+					});
+					ListenersAggt.Element('.card.'+color+' .prepend').Append('click', function(ev) {
+						ListenersAggt.Alias(tagname).Select(color).Prepend();
+					});
+					ListenersAggt.Element('.card.'+color+' .disconn').Append('click', function(ev) {
+						ListenersAggt.Alias(tagname).Select(color).Disconn();
+					});
+				});
+			});
+			ListenersAggt.Element('.anim-on', 'anim-on').Associate('click', function(ev) {
+				ListenersAggt.Alias('anim-on').Disconn();
+				ListenersAggt.Alias('anim-off').Connect();
+				ListenersAggt.Alias('anim-on').GetElement().classList.add('green');
+				ListenersAggt.Alias('anim-off').GetElement().classList.remove('red');
+				['red', 'green', 'blue'].forEach(function(className) {
+					var elems = document.getElementsByClassName(className);
+					Array.prototype.forEach.call(elems, function(elem) {
+						elem.classList.add(className+'-anim');
+					});
+				});
+			});
+			ListenersAggt.Element('.anim-off', 'anim-off').Associate('click', function(ev) {
+				ListenersAggt.Alias('anim-off').Disconn();
+				ListenersAggt.Alias('anim-on').Connect();
+				ListenersAggt.Alias('anim-off').GetElement().classList.add('red');
+				['red', 'green', 'blue'].forEach(function(className) {
+					var elems = document.getElementsByClassName(className);
+					Array.prototype.forEach.call(elems, function(elem) {
+						elem.classList.remove(className+'-anim');
+					});
+				});
+				setTimeout(function() {
+					ListenersAggt.Alias('anim-on').GetElement().classList.remove('green');
+				});
+			});
+			ListenersAggt.Alias('anim-off').Invoke();
+		});
+	</script>
+</body>
+</html>
